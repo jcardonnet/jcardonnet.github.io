@@ -1,1 +1,160 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arboria – Applied AI Consulting</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --------------------------------------------------
+         PALETTE & TYPOGRAPHY TOKENS (deep‑sea theme)
+         -------------------------------------------------- */
+      :root {
+        --bg: #020b0d;       /* near‑black abyss */
+        --accent: #66c6c9;   /* bioluminescent teal */
+        --text: #c4dfe6;     /* pale cyan */
+      }
+
+      /* --------------------------------------------------
+         RESET + BASE LAYOUT
+         -------------------------------------------------- */
+      * {margin:0;padding:0;box-sizing:border-box;}
+      html,body{height:100%;}
+      body{
+        font-family:"Inter",system-ui,sans-serif;
+        background:var(--bg);
+        color:var(--text);
+        display:flex;flex-direction:column;
+      }
+
+      /* --------------------------------------------------
+         NAVIGATION BAR (top‑right)
+         -------------------------------------------------- */
+      header{
+        position:absolute;top:0;left:0;width:100%;padding:2rem 5vw 0;
+        display:flex;justify-content:flex-end;gap:2.5rem;
+        font-weight:300;letter-spacing:.4px;z-index:10;
+      }
+      header a{color:var(--text);text-decoration:none;transition:color .2s ease;}
+      header a:hover{color:var(--accent);}
+
+      /* --------------------------------------------------
+         HERO SECTION
+         -------------------------------------------------- */
+      .hero{
+        flex:1 0 auto;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;
+      }
+
+      /* Vector fractal swirl background (SVG) */
+      .fractal-bg{
+        position:absolute;inset:0;width:140vw;height:140vh;pointer-events:none;
+        transform:translate(-20vw,-20vh) scale(1.15);opacity:.23;z-index:-2;
+      }
+      .fractal-bg path{fill:none;stroke:var(--accent);stroke-linecap:round;stroke-width:.7;stroke-opacity:.85;}
+
+      /* Glow layer to mimic jellyfish light bloom */
+      .hero::after{
+        content:"";position:absolute;inset:0;
+        background:radial-gradient(circle at 50% 30%,rgba(102,198,201,.14) 0%,transparent 60%);
+        filter:blur(70px);z-index:-3;
+      }
+
+      /* --------------------------------------------------
+         TYPOGRAPHY
+         -------------------------------------------------- */
+      .logo{
+        font-size:clamp(3rem,9vw,7.5rem);font-weight:300;letter-spacing:.12em;
+        color:var(--accent);text-transform:uppercase;
+      }
+      .tagline{margin-top:1.2rem;font-size:clamp(1.1rem,2.2vw,1.5rem);font-weight:300;}
+      .cta{margin-top:3rem;}
+      .cta button{
+        background:transparent;border:1px solid var(--accent);border-radius:9999px;
+        padding:.9rem 3rem;font-size:1rem;color:var(--text);cursor:pointer;
+        transition:background .25s ease,transform .25s ease;
+      }
+      .cta button:hover{background:rgba(102,198,201,.08);transform:translateY(-2px);}
+
+      /* --------------------------------------------------
+         RESPONSIVE TWEAKS
+         -------------------------------------------------- */
+      @media(max-width:600px){header{padding:1.5rem 6vw 0;gap:1.2rem;font-size:.85rem;}.cta button{width:100%;max-width:330px;}}
+    </style>
+  </head>
+
+  <body>
+    <!-- ————————————— Navigation ————————————— -->
+    <header>
+      <a href="#solutions">Solutions</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#insights">Insights</a>
+      <a href="#contact">Contact</a>
+    </header>
+
+    <!-- ————————————— Hero ————————————— -->
+    <section class="hero">
+      <!-- SVG fractal background (mirrored + rotated for density) -->
+      <svg class="fractal-bg" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <!-- glow stroke filter to soften lines subtly -->
+          <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- base swirl group -->
+        <g id="branch" stroke="var(--accent)" stroke-width="0.65" stroke-linecap="round">
+          <!-- central trunk with slight sway -->
+          <path d="M600 90 Q600 150 595 210 Q590 270 600 340 Q610 410 605 520" />
+
+          <!-- primary left swirl -->
+          <path d="M600 150 C520 180 450 260 430 350 C410 440 460 520 540 560" />
+          <!-- primary right swirl (mirror) -->
+          <path d="M600 150 C680 180 750 260 770 350 C790 440 740 520 660 560" />
+
+          <!-- inner curl left -->
+          <path d="M600 200 C560 230 530 280 535 340 C540 395 565 430 590 450" />
+          <!-- inner curl right -->
+          <path d="M600 200 C640 230 670 280 665 340 C660 395 635 430 610 450" />
+
+          <!-- lower split tendrils -->
+          <path d="M605 480 C570 525 565 600 600 650" stroke-opacity="0.5" />
+          <path d="M595 480 C630 525 635 600 600 650" stroke-opacity="0.5" />
+        </g>
+
+        <!-- clone & transform for layered complexity -->
+        <use href="#branch" transform="rotate(8 600 400) scale(1.02 1.07)" opacity="0.7" />
+        <use href="#branch" transform="rotate(-8 600 400) scale(1.02 1.07)" opacity="0.7" />
+        <use href="#branch" transform="rotate(16 600 400) scale(1.05 1.12)" opacity="0.4" />
+        <use href="#branch" transform="rotate(-16 600 400) scale(1.05 1.12)" opacity="0.4" />
+
+        <!-- subtle wide arcs for outer ambience -->
+        <g filter="url(#blurGlow)" stroke-opacity="0.25">
+          <path d="M600 160 C420 220 300 350 320 480 C340 610 460 700 600 740" />
+          <path d="M600 160 C780 220 900 350 880 480 C860 610 740 700 600 740" />
+        </g>
+      </svg>
+
+      <!-- Hero copy -->
+      <div>
+        <h1 class="logo">Arboria</h1>
+        <p class="tagline">Applied AI, Unlocked</p>
+        <div class="cta">
+          <button onclick="location.href='mailto:hello@arboria.dev'">Consult with Us</button>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
